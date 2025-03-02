@@ -1,8 +1,26 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
 import "@mantine/core/styles.css";
-import { AppShell, AppShellFooter, AppShellHeader, AppShellMain, Group, MantineProvider, Text } from "@mantine/core";
+import { ActionIcon, AppShell, AppShellFooter, AppShellHeader, AppShellMain, Group, MantineProvider, Paper, Text } from "@mantine/core";
+import { IconMoon, IconSun } from "@tabler/icons-react";
 
 export default function App() {
-  return <MantineProvider forceColorScheme="dark">
+
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    axios.get("http://127.0.0.1:8000/")
+      .then((response) => {setMessage(response.data.message);})
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
+
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
+
+  const toggleTheme = () => {
+    setTheme(prevTheme => (prevTheme === "light" ? "dark" : "light"));
+  };
+
+  return <MantineProvider forceColorScheme={theme}>
     <AppShell
       header={{ height: 60 }}
       footer={{ height: 40 }}
@@ -15,9 +33,29 @@ export default function App() {
           p="md"
           pr="lg"
         >
-          <Text>
-            My App
-          </Text>
+        <ActionIcon
+          variant="transparent"
+          color="yellow"
+          size="lg"
+          onClick={toggleTheme}
+        >
+          <Paper
+            style={{ display: theme === "light" ? "none" : "block" }}
+          >
+            <IconSun size={25} />
+          </Paper>
+          <Paper
+            style={{ display: theme === "dark" ? "none" : "block" }}
+          >
+            <IconMoon size={25} />
+          </Paper>
+        </ActionIcon>
+        <Text
+          size="xl"
+          p="lg"
+        >
+          Hello, FastAPI says: {message}
+        </Text>
         </Group>
       </AppShellHeader>
       <AppShellMain>
