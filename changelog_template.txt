@@ -1,0 +1,23 @@
+## [Version X.Y.Z] - YYYY-MM-DD
+### Added
+- [Feature: Description of the new feature]
+- [Integration: Description of new service or API integration]
+
+### Changed
+- [Refactor: Details of refactorings that change functionality]
+- [Performance: Details of performance improvements]
+
+### Deprecated
+- [Deprecation: What is deprecated and what should be used instead]
+
+### Removed
+- [Removal: What was removed and why]
+- [Compatibility: Any breaking changes and their impact]
+
+### Fixed
+- [Bugfix: Description of the issue and how it was resolved]
+- [UI/UX: Details of user interface/user experience improvements]
+
+### Security
+- [Vulnerability: Description of the vulnerability and how it was addressed]
+- [Authentication: Changes to authentication mechanisms]

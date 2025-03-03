@@ -1,7 +1,10 @@
+import { useState } from "react";
+
 import { Box, Fieldset, Grid, GridCol, Paper, Select, Tabs } from "@mantine/core";
 import { Carousel } from "@mantine/carousel";
+
 import CustomLineChart from "../Charts/index";
-import { useState } from "react";
+
 
 export default function StrategyTabs() {
     const [activeTab, setActiveTab] = useState("funding_carry");

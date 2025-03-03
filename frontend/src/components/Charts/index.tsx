@@ -1,25 +1,10 @@
-import React from 'react';
+import React from "react";
 import { useEffect, useState } from "react";
+
 import axios from "axios";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
-export interface ChartData {
-    date: string;
-    Apples: number;
-    Oranges: number;
-}
-
-export interface Series {
-    name: string;
-    color: string;
-}
-
-export interface ApiResponse {
-    data: ChartData[];
-    dataKey: string;
-    series: Series[];
-}
-
+import { ApiResponse, ChartData, Series } from "../../types/chartTypes";
 
 const CustomLineChart: React.FC = () => {
     const [chartData, setChartData] = useState<ChartData[]>([]);

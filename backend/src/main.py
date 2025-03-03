@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from models import ChartData
+
 app = FastAPI()
 
 app.add_middleware(
@@ -18,22 +20,22 @@ def read_root():
 
 @app.get("/chart")
 def read_chart():
-    response = {
-        "data": [
+    response = ChartData(
+        data=[
             { "date": '2025-03-01', "Apples": 400, "Oranges": 300 },
             { "date": '2025-03-02', "Apples": 300, "Oranges": 500 },
             { "date": '2025-03-03', "Apples": 450, "Oranges": 350 },
             { "date": '2025-03-04', "Apples": 500, "Oranges": 400 }
         ],
-        "dataKey": "date",
-        "series":[
+        dataKey="date",
+        series=[
             { "name": 'Apples', "color": '#1E90FF' },
             { "name": 'Oranges', "color": '#FFA500' },
         ]
-    }
+    )
     return response
 
 
 if __name__ == "__main__":
    import uvicorn
-   uvicorn.run(app, host="127.0.0.1", port=8000)  # , reload=True) 
+   uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True) 
